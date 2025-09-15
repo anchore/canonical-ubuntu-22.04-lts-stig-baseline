@@ -44,7 +44,8 @@ To deny access to ports, protocols, or services, use:
   tag 'host'
 
   ufw_status = command('ufw status').stdout.strip.lines.first
-  value = ufw_status.split(':')[1].strip
+
+  value = ufw_status.split(':')[1].strip unless ufw_status.nil? || ufw_status.empty?
 
   describe 'UFW status' do
     subject { value }
