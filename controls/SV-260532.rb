@@ -40,13 +40,38 @@ Restart the SSH server for the changes to take effect:
   }
 
   approved_macs = input('approved_openssh_server_conf')['macs']
+  # DISA: a finding unless MACs contains only the approved hashes in exact order.
+  meets_rule = ->(value) { value == approved_macs }
 
-  macs_cmd = command("/usr/sbin/sshd -T 2>/dev/null | awk '$1==\"macs\"{print $2}'")
-  actual_macs = macs_cmd.stdout.strip
+  # DISA greps every file sshd reads (sshd -dd), Include targets too. `sshd -T -dd` lists them even in
+  # images where sshd -T cannot finish; fall back to the default files if it lists none. Comment lines are skipped.
+  config_files = command("/usr/sbin/sshd -T -dd 2>&1 | awk '/load_server_config: filename/ {print $NF}'").stdout.split
+  config_files = ['/etc/ssh/sshd_config', '/etc/ssh/sshd_config.d/*.conf'] if config_files.empty?
+  macs_lines = command("grep -iHs -E '^[[:space:]]*macs([[:space:]]|=)' #{config_files.join(' ')}").stdout.lines.map(&:strip)
+  # Drop the "file:" prefix and keyword, plus a trailing comment and quotes, which sshd also ignores.
+  macs_values = macs_lines.map { |l| l.sub(/\A.*?:(?=[[:space:]]*macs[[:space:]=])/i, '').strip.sub(/^macs[[:space:]=]+/i, '').sub(/[[:space:]]+#.*\z/, '').delete(%q("')).strip }.uniq
 
-  describe 'OpenSSH server MACs' do
-    it 'matches the approved list in exact order' do
-      expect(actual_macs).to eq(approved_macs), "OpenSSH server MACs:\n\t#{actual_macs}\ndoes not match the expected value:\n\t#{approved_macs}"
+  describe 'OpenSSH server MACs in the files sshd reads' do
+    it 'are set, not commented out' do
+      expect(macs_values).not_to be_empty, 'No uncommented MACs line found'
+    end
+    it 'have no conflicting values' do
+      expect(macs_values.length).to be <= 1, "Conflicting MACs lines:\n\t#{macs_lines.join("\n\t")}"
+    end
+    it 'match the approved list in exact order' do
+      bad = macs_values.reject { |value| meets_rule.call(value) }
+      expect(bad).to be_empty, "OpenSSH server MACs:\n\t#{bad.join("\n\t")}\ndo not meet the approved value:\n\t#{approved_macs}"
+    end
+  end
+
+  # sshd -T reports the effective value but exits non-zero in images without /run/sshd, so use it only when it runs.
+  sshd_t = command('/usr/sbin/sshd -T')
+  if sshd_t.exit_status.zero?
+    effective_macs = sshd_t.stdout.lines.map(&:split).find { |k, _| k == 'macs' }&.last.to_s
+    describe 'Effective OpenSSH server MACs (sshd -T)' do
+      it 'match the approved list in exact order' do
+        expect(meets_rule.call(effective_macs)).to be(true), "Effective MACs:\n\t#{effective_macs}\ndo not meet the approved value:\n\t#{approved_macs}"
+      end
     end
   end
 end
