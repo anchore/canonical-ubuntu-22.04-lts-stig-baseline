@@ -89,17 +89,33 @@ Restart the SSH daemon for the changes to take effect and then signal the SSH se
     !virtualization.container_system? || package('openssh-server').installed?
   }
 
-  sc = sshd_active_config
-  banner_path = sc.banner
-  banner_file = file(banner_path)
+  # DISA greps every file sshd reads (sshd -dd), Include targets too. `sshd -T -dd` lists them even in
+  # images where sshd -T cannot finish; fall back to the default files if it lists none. Comment lines are skipped.
+  config_files = command("/usr/sbin/sshd -T -dd 2>&1 | awk '/load_server_config: filename/ {print $NF}'").stdout.split
+  config_files = ['/etc/ssh/sshd_config', '/etc/ssh/sshd_config.d/*.conf'] if config_files.empty?
+  banner_lines = command("grep -iHs -E '^[[:space:]]*banner([[:space:]]|=)' #{config_files.join(' ')}").stdout.lines.map(&:strip)
+  # Drop the "file:" prefix and keyword, plus a trailing comment and quotes, which sshd also ignores.
+  banner_values = banner_lines.map { |l| l.sub(/\A.*?:(?=[[:space:]]*banner[[:space:]=])/i, '').strip.sub(/^banner[[:space:]=]+/i, '').sub(/[[:space:]]+#.*\z/, '').delete(%q("')).strip }.uniq
 
-  describe "File containing Banner Content (#{banner_file.path})" do
-    it 'should exist' do
-      expect(banner_file).to exist
+  describe 'SSH Banner in the files sshd reads' do
+    it 'is set to one banner file, not none, with no conflicting values' do
+      expect(banner_values.length).to eq(1), "Expected one Banner value, found: #{banner_lines.empty? ? 'none (missing or commented out)' : banner_lines.join('; ')}"
+      expect(banner_values.first.to_s.downcase).not_to eq('none'), 'Banner is set to none'
     end
   end
 
-  if banner_file.exist?
+  banner_path = banner_values.first if banner_values.length == 1 && banner_values.first.downcase != 'none'
+  banner_file = banner_path ? file(banner_path) : nil
+
+  if banner_file
+    describe "File containing Banner Content (#{banner_path})" do
+      it 'should exist' do
+        expect(banner_file).to exist
+      end
+    end
+  end
+
+  if banner_file&.exist?
     banner = banner_file.content.gsub(/[\r\n\s]/, '')
     expected_banner = input('banner_message_text_cli').gsub(/[\r\n\s]/, '')
     describe 'The CLI Login Banner' do
