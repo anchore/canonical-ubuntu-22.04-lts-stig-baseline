@@ -32,27 +32,38 @@ To deny access to ports, protocols, or services, use:
 
      $ sudo ufw deny <direction> <port/protocol/service>'
   impact 0.5
-  ref 'DPMS Target Canonical Ubuntu 22.04 LTS'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000096-GPOS-00050'
   tag gid: 'V-260518'
-  tag rid: 'SV-260518r953367_rule'
+  tag rid: 'SV-260518r958480_rule'
   tag stig_id: 'UBTU-22-251030'
   tag fix_id: 'F-64155r953366_fix'
   tag cci: ['CCI-000382']
   tag nist: ['CM-7 b']
   tag 'host'
+  tag 'container-conditional'
 
-  ufw_status = command('ufw status').stdout.strip
+  only_if('Control not applicable - containerized environment or external firewall in use per site policy', impact: 0.0) {
+    !virtualization.container_system?
+  }
+
+  # `ufw status` prints nothing to stdout when ufw is not installed, so guard
+  # the parse — an absent firewall is a finding, never an exception.
+  ufw_installed = package('ufw').installed?
+  ufw_status_line = ufw_installed ? command('ufw status').stdout.strip.lines.first.to_s : ''
+  ufw_state = ufw_status_line.split(':')[1].to_s.strip
+
   describe 'UFW status' do
-    subject { ufw_status }
-    it { should match(/^Status:\s+active$/) }
-  end
-
-  describe 'UFW rules' do
-    it 'should only allow approved ports/protocols' do
-      # You could parse ufw_rules and compare against an input list of approved services
-      skip 'Manual review required: compare UFW rules with PPSM CLSA'
+    it 'is active' do
+      failure_hint = if ufw_installed
+                       "`ufw status` reported: #{ufw_status_line.inspect}"
+                     else
+                       'the ufw package is not installed, so no ufw firewall is restricting ports, protocols, or services'
+                     end
+      expect(ufw_state).to cmp('active'), "UFW should be active but #{failure_hint}"
     end
+  end
+  describe 'Status listings for any allowed services, ports, or applications must be documented with the organization' do
+    skip 'Status listings checks must be preformed manually'
   end
 end
