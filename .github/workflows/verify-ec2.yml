@@ -1,7 +1,7 @@
 name: EC2 Testing Matrix
 
 on:
-  pull_request:
+  # pull_request:
   push:
     branches:
       - main
@@ -16,7 +16,7 @@ jobs:
       KITCHEN_LOCAL_YAML: kitchen.ec2.yml
       SAF_PIPELINE_SUBNET: ${{ secrets.SAF_PIPELINE_SUBNET }}
       SAF_PIPELINE_SG: ${{ secrets.SAF_PIPELINE_SG }}
-      PLATFORM: "rhel-9"
+      PLATFORM: "ubuntu-22"
       LC_ALL: "en_US.UTF-8"
     strategy:
       matrix:
@@ -61,11 +61,11 @@ jobs:
       - name: Run Bundle Install
         run: bundle install
 
-      - name: Installed Inspec
-        run: bundle exec inspec version
+      - name: Installed CINC Auditor
+        run: bundle exec cinc-auditor version
 
       - name: Vendor the Profile
-        run: bundle exec inspec vendor . --overwrite
+        run: bundle exec cinc-auditor vendor . --overwrite
 
       - name: Run kitchen test
         if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
@@ -109,4 +109,4 @@ jobs:
         if: ${{ !contains(steps.commit.outputs.message, 'only-validate-profile') }}
         uses: mitre/saf_action@v1.5.2
         with:
-          command_string: "validate threshold -i spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}.json -F ${{ matrix.suite }}.threshold.yml"
+          command_string: "validate threshold -i spec/results/${{ env.PLATFORM }}_${{ matrix.suite }}.json --templateFile ${{ matrix.suite }}.threshold.yml"
