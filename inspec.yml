@@ -196,7 +196,7 @@ inputs:
   - name: pass_max_days
     description: "The maximum password lifetime restriction in days"
     type: Numeric
-    value: 60
+    value: 180
 
   - name: separate_filesystem_exempt
     description: "The system manages file system useage, LVM/XFS etc. or is managed by the service provider"
@@ -406,7 +406,7 @@ inputs:
   - name: system_inactivity_timeout
     description: Maximum system inactivity timeout (time in seconds).
     type: Numeric
-    value: 900
+    value: 600
 
   # SV-260547
   - name: days_of_inactivity
@@ -1135,3 +1135,9 @@ inputs:
     description: List of block devices/partitions that are permitted to be unencrypted
     type: Array
     value: []
+
+  # SV-279937
+  - name: nfs_authorized
+    description: NFS mounts are authorized and in use on this system (makes SV-279937 Not Applicable)
+    type: Boolean
+    value: false
