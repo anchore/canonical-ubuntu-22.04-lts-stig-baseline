@@ -37,9 +37,12 @@ Note: Enabling the firewall will potentially disrupt ssh sessions.'
   end
 
   if expected_firewall_package == 'ufw'
-    describe 'ufw service active state' do
-      subject { command('systemctl is-active ufw.service').stdout.strip }
-      it { should cmp 'active' }
+    # Ask ufw itself, as DISA's check does: ufw.service stays "active" when ufw is
+    # disabled (ufw-init exits 0 when ENABLED=no). An error prints no status line.
+    ufw_status = command('ufw status').stdout.lines.first.to_s.strip
+    describe 'ufw status' do
+      subject { ufw_status }
+      it { should cmp 'Status: active' }
     end
   else
     describe service(expected_firewall_package) do
