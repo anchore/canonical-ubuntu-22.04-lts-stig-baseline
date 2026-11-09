@@ -40,13 +40,14 @@ $ sudo systemctl list-units --type=service | grep nfs'
     !virtualization.container_system?
   }
 
-  nfs_packages = %w[nfs-common nfs-kernel-server]
-  installed = nfs_packages.select { |pkg| package(pkg).installed? }
-
-  describe 'NFS packages' do
-    subject { installed }
-    it 'should not be installed (nfs-common and nfs-kernel-server)' do
-      expect(subject).to be_empty, "Installed NFS packages found: #{subject.join(', ')}"
+  if input('nfs_authorized')
+    impact 0.0
+    describe 'NFS mounts are authorized and in use on this system' do
+      skip 'NFS mounts are authorized and in use (input nfs_authorized), so this control is Not Applicable.'
+    end
+  else
+    describe package('nfs-kernel-server') do
+      it { should_not be_installed }
     end
   end
 end

@@ -32,13 +32,18 @@ $ sudo dconf update'
   tag 'host'
 
   xorg_status = command('which Xorg').exit_status
-  if xorg_status == 0
-    describe command("grep -R logout='' /etc/dconf/db/local.d/").stdout.strip.split("\n").entries do
-      its('count') { should_not eq 0 }
+  if xorg_status.zero?
+    logout = command('gsettings get org.gnome.settings-daemon.plugins.media-keys logout').stdout.strip
+
+    describe 'GNOME media-keys logout binding' do
+      subject { logout }
+      it 'is not bound to an action (@as [])' do
+        expect(subject).to eq('@as []'), "Expected `gsettings get org.gnome.settings-daemon.plugins.media-keys logout` to return \"@as []\", got #{subject.inspect}"
+      end
     end
   else
     impact 0.0
-    describe command('which Xorg').exit_status do
+    describe 'No graphical user interface installed' do
       skip('This control is Not Applicable since a GUI not installed.')
     end
   end

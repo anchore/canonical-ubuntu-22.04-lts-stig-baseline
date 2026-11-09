@@ -50,14 +50,32 @@ idle-delay=600'
   }
 
   if package('gnome-shell').installed?
-    describe command("gsettings get org.gnome.desktop.session idle-delay | cut -d ' ' -f2") do
-      its('stdout.strip') { should cmp <= input('system_inactivity_timeout') }
+    timeout = input('system_inactivity_timeout')
+    gsetting = ->(schema, key) { command("gsettings get #{schema} #{key}").stdout.strip }
+    # gsettings prints uint32 values as "uint32 600"; keep only the number
+    lock_enabled = gsetting.call('org.gnome.desktop.screensaver', 'lock-enabled')
+    lock_delay = gsetting.call('org.gnome.desktop.screensaver', 'lock-delay').split.last.to_s
+    idle_delay = gsetting.call('org.gnome.desktop.session', 'idle-delay').split.last.to_s
+
+    describe 'GNOME screensaver lock-enabled' do
+      subject { lock_enabled }
+      it { should cmp 'true' }
+    end
+    describe 'GNOME screensaver lock-delay (seconds)' do
+      subject { lock_delay }
+      it { should cmp '0' }
+    end
+    describe 'GNOME session idle-delay (seconds)' do
+      subject { idle_delay }
+      it { should match(/\A\d+\z/) }
+      # 0 disables the idle timeout, so it never locks
+      it { should cmp > 0 }
+      it { should cmp <= timeout }
     end
   else
     impact 0.0
     describe 'The system does not have GNOME installed' do
-      skip "The system does not have GNOME installed, this requirement is Not
-        Applicable."
+      skip 'The system does not have GNOME installed, this requirement is Not Applicable.'
     end
   end
 end

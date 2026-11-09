@@ -37,7 +37,25 @@ Note: Once this rule is active, further changes to the audit configuration will 
   tag nist: ['AU-9 a']
   tag 'host'
 
-  describe 'TODO' do
-    skip 'Automated test for SV-288816 not yet implemented'
+  only_if('This control is Not Applicable to containers', impact: 0.0) {
+    !virtualization.container_system?
+  }
+
+  enabled = command('auditctl -s').stdout.lines.map(&:strip).find { |l| l.start_with?('enabled ') }.to_s.split.last
+
+  describe 'Running audit system enabled flag (auditctl -s)' do
+    subject { enabled }
+    it 'is 2 (rules are immutable)' do
+      expect(subject).to cmp('2'), "Expected `auditctl -s` to report \"enabled 2\", got #{subject.inspect}"
+    end
+  end
+
+  persistent = command("grep -sE '^-e 2' /etc/audit/rules.d/*.rules").stdout.strip
+
+  describe 'Audit rules under /etc/audit/rules.d' do
+    subject { persistent }
+    it 'set "-e 2" so the rules are immutable across reboots' do
+      expect(subject).not_to be_empty, 'No "-e 2" line found in /etc/audit/rules.d/*.rules'
+    end
   end
 end

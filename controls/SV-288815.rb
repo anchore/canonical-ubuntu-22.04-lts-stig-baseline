@@ -34,7 +34,20 @@ Note: The "-k <keyname>" at the end of the line gives the rule a unique meaning 
   tag nist: ['AU-12 c']
   tag 'host'
 
-  describe 'TODO' do
-    skip 'Automated test for SV-288815 not yet implemented'
+  audit_command = '/usr/sbin/useradd'
+
+  only_if('This control is Not Applicable to containers', impact: 0.0) {
+    !virtualization.container_system?
+  }
+
+  # The check text says the key is arbitrary, so it is not checked
+  describe 'Command' do
+    it "#{audit_command} is audited properly" do
+      audit_rule = auditd.file(audit_command)
+      expect(audit_rule).to exist
+      expect(audit_rule.action.uniq).to cmp 'always'
+      expect(audit_rule.list.uniq).to cmp 'exit'
+      expect(audit_rule.fields.flatten).to include('perm=x', 'auid>=1000', 'auid!=-1')
+    end
   end
 end

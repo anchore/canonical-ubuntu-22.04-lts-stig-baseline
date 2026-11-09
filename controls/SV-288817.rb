@@ -26,8 +26,15 @@ $ sudo usermod -s /usr/sbin/nologin <user>'
   tag cci: ['CCI-002696']
   tag nist: ['SI-6 a']
   tag 'host'
+  tag 'container'
 
-  describe 'TODO' do
-    skip 'Automated test for SV-288817 not yet implemented'
+  # Same selection as DISA's awk: 0 < UID < 1000, not halt/sync/shutdown,
+  # and a shell that does not end in nologin or false
+  exempt = %w[halt sync shutdown]
+  offenders = passwd.where { uid.to_i.positive? && uid.to_i < 1000 && !exempt.include?(user) && shell !~ /(nologin|false)\z/ }
+
+  describe 'System accounts (UID 1-999) with an interactive login shell' do
+    subject { offenders.users.zip(offenders.shells).map { |u, s| "#{u}:#{s}" } }
+    it { should be_empty }
   end
 end
