@@ -20,30 +20,41 @@ z /var/log/journal 2640 root systemd-journal - -
 
 Restart the system for the changes to take effect.'
   impact 0.5
-  ref 'DPMS Target Canonical Ubuntu 22.04 LTS'
   tag check_id: 'C-64230r953314_chk'
   tag severity: 'medium'
   tag gid: 'V-260501'
-  tag rid: 'SV-260501r953316_rule'
+  tag rid: 'SV-260501r958566_rule'
   tag stig_id: 'UBTU-22-232080'
   tag gtitle: 'SRG-OS-000206-GPOS-00084'
   tag fix_id: 'F-64138r953315_fix'
   tag 'documentable'
   tag cci: ['CCI-001314']
   tag nist: ['SI-11 b']
+  tag 'host'
 
-  only_if('Not applicable if directories not present', impact: 0.0) do
-    directory('/var/log/journal').exist? && directory('/run/log/journal').exist?
-  end
+  only_if('This control is Not Applicable to containers', impact: 0.0) {
+    !virtualization.container_system?
+  }
 
-  if directory('/var/log/journal').exist?
-    describe directory('/var/log/journal') do
-      it { should be_owned_by 'root' }
-    end
-  end
-  if directory('/run/log/journal').exist?
-    describe directory('/run/log/journal') do
-      it { should be_owned_by 'root' }
+  journal_bases = %w[/run/log/journal /var/log/journal]
+
+  journal_bases.each do |base|
+    if file(base).exist?
+      describe "Systemd journal directory ownership under #{base}" do
+        subject do
+          command("find -L #{base} -type d ! -user root -print 2>/dev/null").stdout.split("\n").reject(&:empty?)
+        end
+
+        it 'should have all directories owned by root' do
+          expect(subject).to be_empty, "Directories under #{base} not owned by root:\n\t- #{subject.join("\n\t- ")}"
+        end
+      end
+    else
+      describe "Systemd journal directory #{base}" do
+        it 'is absent; and is not misconfigured' do
+          expect(file(base)).not_to exist
+        end
+      end
     end
   end
 end
