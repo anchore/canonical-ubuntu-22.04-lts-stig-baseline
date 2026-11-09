@@ -1,26 +1,26 @@
 control 'SV-260580' do
   title 'Ubuntu 22.04 LTS must use DoW PKI-established certificate authorities for verification of the establishment of protected sessions.'
-  desc 'Untrusted certificate authorities (CA) can issue certificates, but they may be issued by organizations or individuals that seek to compromise DoW systems or by organizations with insufficient security controls. If the CA used for verifying the certificate is not a DoW-approved CA, trust of this CA has not been established.  
-  
+  desc 'Untrusted certificate authorities (CA) can issue certificates, but they may be issued by organizations or individuals that seek to compromise DoW systems or by organizations with insufficient security controls. If the CA used for verifying the certificate is not a DoW-approved CA, trust of this CA has not been established.
+
 The DoW will only accept PKI-certificates obtained from a DoW-approved internal or external certificate authority. Reliance on CAs for the establishment of secure sessions includes, for example, the use of SSL/TLS certificates.'
-  desc 'check', 'Verify the directory containing the root certificates for Ubuntu 22.04 LTS contains certificate files for DoW PKI-established certificate authorities by iterating over all files in the "/etc/ssl/certs" directory and checking if, at least one, has the subject matching "DOD ROOT CA". 
- 
-     $ ls /etc/ssl/certs | grep -i DoW 
-     DoW_PKE_CA_chain.pem 
- 
-If no DoW root certificate is found, this is a finding. 
- 
-Verify that all root certificates present on the system have been approved by the AO. 
- 
-     $ ls /etc/ssl/certs 
- 
+  desc 'check', 'Verify the directory containing the root certificates for Ubuntu 22.04 LTS contains certificate files for DoW PKI-established certificate authorities by iterating over all files in the "/etc/ssl/certs" directory and checking if, at least one, has the subject matching "DOD ROOT CA".
+
+     $ ls /etc/ssl/certs | grep -i DoW
+     DoW_PKE_CA_chain.pem
+
+If no DoW root certificate is found, this is a finding.
+
+Verify that all root certificates present on the system have been approved by the AO.
+
+     $ ls /etc/ssl/certs
+
 If a certificate is present that is not approved by the AO, this is a finding.'
-  desc 'fix', 'Configure Ubuntu 22.04 LTS to use of DoW PKI-established certificate authorities for verification of the establishment of protected sessions.  
- 
-Add at least one DoW certificate authority to the "/usr/share/ca-certificates" directory in the CRT format.  
-  
-Update the "/etc/ssl/certs" directory by using the following command:  
-  
+  desc 'fix', 'Configure Ubuntu 22.04 LTS to use of DoW PKI-established certificate authorities for verification of the establishment of protected sessions.
+
+Add at least one DoW certificate authority to the "/usr/share/ca-certificates" directory in the CRT format.
+
+Update the "/etc/ssl/certs" directory by using the following command:
+
      $ sudo dpkg-reconfigure ca-certificates'
   impact 0.5
   tag check_id: 'C-64309r1261468_chk'

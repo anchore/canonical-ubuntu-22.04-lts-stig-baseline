@@ -17,15 +17,15 @@ The structure and content of error messages must be carefully considered by the 
 
 If any output returned is not owned by "root", this is a finding.'
   desc 'fix', 'Configure Ubuntu 22.04 LTS to set the appropriate ownership to the files used by the systemd journal.
- 
+
 Create a drop-in file if it does not already exist with the following command:
 
 $ sudo vi /etc/tmpfiles.d/zzz-systemd-stig.conf
- 
-Add or modify the following lines in the "/etc/tmpfiles.d/zzz-systemd-stig.conf" file: 
- 
+
+Add or modify the following lines in the "/etc/tmpfiles.d/zzz-systemd-stig.conf" file:
+
 z /var/log/journal/%m/system.journal 0640 root systemd-journal - -
- 
+
 Restart the system for the changes to take effect.'
   impact 0.5
   tag check_id: 'C-64232r953320_chk'

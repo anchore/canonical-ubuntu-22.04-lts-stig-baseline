@@ -8,12 +8,12 @@ control 'SV-260530' do
 
 If "X11UseLocalhost" is set to "no", is commented out, is missing, or conflicting results are returned, this is a finding.)
   desc 'fix', 'Configure the SSH server to prevent remote hosts from connecting to the proxy display.
-  
-Add or modify the following line in the "/etc/ssh/sshd_config" file: 
 
-X11UseLocalhost yes 
- 
-Restart SSH for the changes to take effect: 
+Add or modify the following line in the "/etc/ssh/sshd_config" file:
+
+X11UseLocalhost yes
+
+Restart SSH for the changes to take effect:
 
 $ sudo systemctl restart ssh'
   impact 0.5

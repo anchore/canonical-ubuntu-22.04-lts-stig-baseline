@@ -11,12 +11,12 @@ Check the account inactivity value by performing the following command:
      INACTIVE=35
 
 If "INACTIVE" is set to "-1" or is not set to "35", is commented out, or is missing, this is a finding.'
-  desc 'fix', 'Configure Ubuntu 22.04 LTS to disable account identifiers after 35 days of inactivity after the password expiration.   
-  
-Run the following command to change the configuration for adduser:  
-  
-     $ sudo useradd -D -f 35 
-  
+  desc 'fix', 'Configure Ubuntu 22.04 LTS to disable account identifiers after 35 days of inactivity after the password expiration.
+
+Run the following command to change the configuration for adduser:
+
+     $ sudo useradd -D -f 35
+
 Note: DoW recommendation is 35 days, but a lower value is acceptable. The value "0" will disable the account immediately after the password expires.'
   impact 0.5
   tag check_id: 'C-64276r953452_chk'

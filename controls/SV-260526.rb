@@ -8,14 +8,14 @@ control 'SV-260526' do
      /etc/ssh/sshd_config:PermitUserEnvironment no
 
 If "PermitEmptyPasswords" and "PermitUserEnvironment" are not set to "no", are commented out, are missing, or conflicting results are returned, this is a finding.)
-  desc 'fix', 'Configure the SSH server to not allow unattended or automatic login to the system.  
-  
-Add or modify the following lines in the "/etc/ssh/sshd_config" file:  
-  
-PermitEmptyPasswords no 
-PermitUserEnvironment no 
+  desc 'fix', 'Configure the SSH server to not allow unattended or automatic login to the system.
 
-Restart SSH for the changes to take effect: 
+Add or modify the following lines in the "/etc/ssh/sshd_config" file:
+
+PermitEmptyPasswords no
+PermitUserEnvironment no
+
+Restart SSH for the changes to take effect:
 
 $ sudo systemctl restart ssh'
   impact 0.7

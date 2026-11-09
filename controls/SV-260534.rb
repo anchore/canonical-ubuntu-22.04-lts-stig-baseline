@@ -7,13 +7,13 @@ control 'SV-260534' do
      /etc/ssh/sshd_config:UsePAM yes
 
 If "UsePAM" is not set to "yes", is commented out, is missing, or conflicting results are returned, this is a finding.)
-  desc 'fix', 'Configure Ubuntu 22.04 LTS to use strong authentication when establishing nonlocal maintenance and diagnostic sessions.   
+  desc 'fix', 'Configure Ubuntu 22.04 LTS to use strong authentication when establishing nonlocal maintenance and diagnostic sessions.
 
-Add or modify the following line to /etc/ssh/sshd_config:  
+Add or modify the following line to /etc/ssh/sshd_config:
 
-UsePAM yes 
+UsePAM yes
 
-Restart SSH for the changes to take effect: 
+Restart SSH for the changes to take effect:
 
 $ sudo systemctl restart ssh'
   impact 0.5

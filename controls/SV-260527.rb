@@ -3,21 +3,21 @@ control 'SV-260527' do
   desc 'Terminating an unresponsive SSH session within a short time period reduces the window of opportunity for unauthorized personnel to take control of a management session enabled on the console or console port that has been left unattended. In addition, quickly terminating an idle SSH session will also free up resources committed by the managed network element.
 
 Terminating network connections associated with communications sessions includes, for example, deallocating associated TCP/IP address/port pairs at the operating system level and deallocating networking assignments at the application level if multiple application sessions are using a single operating system-level network connection. This does not mean the operating system terminates all sessions or network access; it only ends the unresponsive session and releases the resources associated with that session.'
-  desc 'check', %q(Verify the SSH server automatically terminates a user session after the SSH client has become unresponsive by using the following command:  
- 
-     $ sudo /usr/sbin/sshd -dd 2>&1 | awk '/filename/ {print $4}' | tr -d '\\r' | tr '\\n' ' ' | xargs sudo grep -iH 'clientalivecountmax' 
-     /etc/ssh/sshd_config:ClientAliveCountMax 1 
- 
-If "ClientAliveCountMax" is not set to "1", conflicting results are returned, or it is commented out or missing, this is a finding.)
-  desc 'fix', 'Configure the SSH server to terminate a user session automatically after the SSH client has become unresponsive. 
- 
-Note: This setting must be applied in conjunction with UBTU-22-255040 to function correctly. 
- 
-Add or modify the following line in the "/etc/ssh/sshd_config" file: 
+  desc 'check', %q(Verify the SSH server automatically terminates a user session after the SSH client has become unresponsive by using the following command:
 
-ClientAliveCountMax 1 
-  
-Restart SSH for the changes to take effect: 
+     $ sudo /usr/sbin/sshd -dd 2>&1 | awk '/filename/ {print $4}' | tr -d '\\r' | tr '\\n' ' ' | xargs sudo grep -iH 'clientalivecountmax'
+     /etc/ssh/sshd_config:ClientAliveCountMax 1
+
+If "ClientAliveCountMax" is not set to "1", conflicting results are returned, or it is commented out or missing, this is a finding.)
+  desc 'fix', 'Configure the SSH server to terminate a user session automatically after the SSH client has become unresponsive.
+
+Note: This setting must be applied in conjunction with UBTU-22-255040 to function correctly.
+
+Add or modify the following line in the "/etc/ssh/sshd_config" file:
+
+ClientAliveCountMax 1
+
+Restart SSH for the changes to take effect:
 
 $ sudo systemctl restart ssh'
   impact 0.5

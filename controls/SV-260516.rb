@@ -1,16 +1,16 @@
 control 'SV-260516' do
   title 'Ubuntu 22.04 LTS must have an application firewall enabled.'
   desc 'Firewalls protect computers from network attacks by blocking or limiting access to open network ports. Application firewalls limit which applications are allowed to communicate over the network.'
-  desc 'check', 'Verify the ufw is enabled on the system with the following command: 
- 
+  desc 'check', 'Verify the ufw is enabled on the system with the following command:
+
     $ sudo ufw status
     Status: active
- 
-If the above command returns the status as "inactive" or any type of error, this is a finding. 
+
+If the above command returns the status as "inactive" or any type of error, this is a finding.
 
 If the ufw is not installed, ask the system administrator if another application firewall is installed. If a different firewall is active on the system, this is not a finding.'
-  desc 'fix', 'Enable the ufw by using the following command: 
- 
+  desc 'fix', 'Enable the ufw by using the following command:
+
     $ sudo ufw enable
 
 Note: Enabling the firewall will potentially disrupt ssh sessions.'

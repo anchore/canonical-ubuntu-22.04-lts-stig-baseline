@@ -16,13 +16,13 @@ If any output returned is not owned by "root", this is a finding.'
 Create a drop-in file if it does not already exist with the following command:
 
 $ sudo vi /etc/tmpfiles.d/zzz-systemd-stig.conf
- 
-Add or modify the following lines in the "/etc/tmpfiles.d/zzz-systemd-stig.conf" file: 
- 
+
+Add or modify the following lines in the "/etc/tmpfiles.d/zzz-systemd-stig.conf" file:
+
 z /run/log/journal 2750 root systemd-journal - -
 z /var/log/journal 2750 root systemd-journal - -
 z /var/log/journal/%m 2750 root systemd-journal - -
- 
+
 Restart the system for the changes to take effect.'
   impact 0.5
   tag check_id: 'C-64230r953314_chk'

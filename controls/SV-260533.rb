@@ -9,13 +9,13 @@ The system will attempt to use the first algorithm presented by the client that 
      /etc/ssh/sshd_config:KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
 
 If "KexAlgorithms" does not contain only the algorithms "ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256" in exact order, is commented out, is missing, or conflicting results are returned, this is a finding.)
-  desc 'fix', 'Configure the SSH server to use only FIPS-validated key exchange algorithms. 
- 
-Add or modify the following line in the "/etc/ssh/sshd_config" file: 
- 
-KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256 
- 
-Restart SSH for the changes to take effect: 
+  desc 'fix', 'Configure the SSH server to use only FIPS-validated key exchange algorithms.
+
+Add or modify the following line in the "/etc/ssh/sshd_config" file:
+
+KexAlgorithms ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256
+
+Restart SSH for the changes to take effect:
 
 $ sudo systemctl restart ssh'
   impact 0.5

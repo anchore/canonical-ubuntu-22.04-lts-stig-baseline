@@ -17,12 +17,12 @@ Check the saved value of TCP syncookies by using the following command:
 If the "net.ipv4.tcp_syncookies" option is not set to "1", is commented out, or is missing, this is a finding.
 
 If conflicting results are returned, this is a finding.'
-  desc 'fix', %q(Configure Ubuntu 22.04 LTS to use TCP syncookies by using the following command:  
-  
-     $ sudo sysctl -w net.ipv4.tcp_syncookies=1  
-  
-If "1" is not the system's default value, add or update the following line in "/etc/sysctl.conf":  
-  
+  desc 'fix', %q(Configure Ubuntu 22.04 LTS to use TCP syncookies by using the following command:
+
+     $ sudo sysctl -w net.ipv4.tcp_syncookies=1
+
+If "1" is not the system's default value, add or update the following line in "/etc/sysctl.conf":
+
      net.ipv4.tcp_syncookies = 1)
   impact 0.5
   tag check_id: 'C-64251r953377_chk'

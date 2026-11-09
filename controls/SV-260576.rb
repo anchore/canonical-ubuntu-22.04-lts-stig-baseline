@@ -1,7 +1,7 @@
 control 'SV-260576' do
   title 'Ubuntu 22.04 LTS must electronically verify personal identity verification (PIV) credentials.'
-  desc 'The use of PIV credentials facilitates standardization and reduces the risk of unauthorized access.  
-  
+  desc 'The use of PIV credentials facilitates standardization and reduces the risk of unauthorized access.
+
 DoW has mandated the use of the common access card (CAC) to support identity management and personal authentication for systems covered under Homeland Security Presidential Directive (HSPD) 12, as well as making the CAC a primary component of layered protection for national security systems.'
   desc 'check', %q(Verify Ubuntu 22.04 LTS electronically verifies PIV credentials via certificate status checking by using the following command:
 
