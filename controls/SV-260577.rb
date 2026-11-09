@@ -23,15 +23,15 @@ cert_policy = ca,signature,ocsp_on;
 
 Note: If the system is missing an "/etc/pam_pkcs11/" directory and an "/etc/pam_pkcs11/pam_pkcs11.conf", find an example to copy into place and modify accordingly at "/usr/share/doc/libpam-pkcs11/examples/pam_pkcs11.conf.example.gz".'
   impact 0.5
+  tag check_id: 'C-64306r1069111_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000066-GPOS-00034'
-  tag satisfies: ['SRG-OS-000066-GPOS-00034', 'SRG-OS-000384-GPOS-00167']
   tag gid: 'V-260577'
   tag rid: 'SV-260577r1069112_rule'
   tag stig_id: 'UBTU-22-612030'
   tag fix_id: 'F-64214r953543_fix'
-  tag cci: ['CCI-000185', 'CCI-001991', 'CCI-004909']
-  tag nist: ['IA-5 (2) (a)', 'IA-5 (2) (b) (1)', 'IA-5 (2) (d)', 'SC-17 b']
+  tag cci: ['CCI-000185', 'CCI-004909']
+  tag nist: ['IA-5 (2) (a)', 'IA-5 (2) (b) (1)', 'SC-17 b']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

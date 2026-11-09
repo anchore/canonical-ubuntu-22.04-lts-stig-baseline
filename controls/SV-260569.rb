@@ -13,14 +13,15 @@ Add or modify the following line in the "/etc/pam.d/common-password" file:
 
 password [success=1 default=ignore] pam_unix.so obscure sha512 shadow rounds=100000'
   impact 0.5
+  tag check_id: 'C-64298r1101734_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000073-GPOS-00041'
   tag gid: 'V-260569'
   tag rid: 'SV-260569r1101736_rule'
   tag stig_id: 'UBTU-22-611055'
   tag fix_id: 'F-64206r1101735_fix'
-  tag cci: ['CCI-000803', 'CCI-000196', 'CCI-004062']
-  tag nist: ['IA-7', 'IA-5 (1) (c)', 'IA-5 (1) (d)']
+  tag cci: ['CCI-004062', 'CCI-000196']
+  tag nist: ['IA-5 (1) (d)', 'IA-5 (1) (c)']
   tag 'host'
   tag 'container'
 

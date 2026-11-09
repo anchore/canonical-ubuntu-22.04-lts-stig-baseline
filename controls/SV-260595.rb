@@ -35,14 +35,15 @@ Set the auditd server to point to the mount point where the audit records must b
 
 where <audit_partition_mountpoint> is the aforementioned mount point.)
   impact 0.3
+  tag check_id: 'C-64324r953596_chk'
   tag severity: 'low'
   tag gtitle: 'SRG-OS-000341-GPOS-00132'
   tag gid: 'V-260595'
   tag rid: 'SV-260595r958752_rule'
   tag stig_id: 'UBTU-22-653035'
   tag fix_id: 'F-64232r953597_fix'
-  tag cci: ['CCI-001849', 'CCI-001851']
-  tag nist: ['AU-4', 'AU-4 (1)']
+  tag cci: ['CCI-001849']
+  tag nist: ['AU-4']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

@@ -11,22 +11,23 @@ If X11 services are not required for the system's intended function, they should
      /etc/ssh/sshd_config:X11Forwarding no
 
 If "X11Forwarding" is set to "yes" and is not documented with the information system security officer (ISSO) as an operational requirement, is commented out, is missing, or conflicting results are returned, this is a finding.)
-  desc 'fix', 'Configure the SSH server to disable X11 forwarding.
-
-Add or modify the following line in the "/etc/ssh/sshd_config" file:
+  desc 'fix', 'Configure the SSH server to disable X11 forwarding.  
+ 
+Add or modify the following line in the "/etc/ssh/sshd_config" file: 
 
 X11Forwarding no
+  
+Restart SSH for the changes to take effect:
 
-Restart the SSH daemon for the changes to take effect:
-
-     $ sudo systemctl restart sshd.service'
+$ sudo systemctl restart ssh'
   impact 0.7
+  tag check_id: 'C-64258r953398_chk'
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag gid: 'V-260529'
-  tag rid: 'SV-260529r991589_rule'
+  tag rid: 'SV-260529r1268251_rule'
   tag stig_id: 'UBTU-22-255040'
-  tag fix_id: 'F-64166r953399_fix'
+  tag fix_id: 'F-64166r1208684_fix'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
   tag 'host'

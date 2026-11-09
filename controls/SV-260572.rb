@@ -13,14 +13,15 @@ Add or modify the following line in the "/etc/login.defs" file:
 
 ENCRYPT_METHOD SHA512'
   impact 0.5
+  tag check_id: 'C-64301r953527_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000120-GPOS-00061'
   tag gid: 'V-260572'
-  tag rid: 'SV-260572r971535_rule'
+  tag rid: 'SV-260572r1268232_rule'
   tag stig_id: 'UBTU-22-611070'
   tag fix_id: 'F-64209r953528_fix'
-  tag cci: ['CCI-000196', 'CCI-000803']
-  tag nist: ['IA-5 (1) (c)', 'IA-7']
+  tag cci: ['CCI-000803']
+  tag nist: ['IA-7']
   tag 'host'
   tag 'container'
 

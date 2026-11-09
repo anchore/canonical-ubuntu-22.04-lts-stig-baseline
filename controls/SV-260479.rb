@@ -16,13 +16,13 @@ If the "chrony" package is not installed, this is a finding.'
   tag check_id: 'C-64208r953248_chk'
   tag severity: 'low'
   tag gid: 'V-260479'
-  tag rid: 'SV-260479r991589_rule'
+  tag rid: 'SV-260479r1268251_rule'
   tag stig_id: 'UBTU-22-215015'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag fix_id: 'F-64116r953249_fix'
   tag 'documentable'
-  tag cci: ['CCI-001891', 'CCI-000366']
-  tag nist: ['AU-8 (1) (a)', 'CM-6 b']
+  tag cci: ['CCI-000366']
+  tag nist: ['CM-6 b']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

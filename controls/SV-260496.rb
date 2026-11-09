@@ -14,6 +14,7 @@ If any system commands are returned that are not Set Group ID upon execution (SG
 
      $ sudo chgrp root <command_name>'
   impact 0.5
+  tag check_id: 'C-64225r953299_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000259-GPOS-00100'
   tag gid: 'V-260496'

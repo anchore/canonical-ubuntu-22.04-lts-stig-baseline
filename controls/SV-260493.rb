@@ -23,7 +23,7 @@ If any system commands directories are returned, this is a finding.)
   tag fix_id: 'F-64130r953291_fix'
   tag 'documentable'
   tag cci: ['CCI-001495']
-  tag nist: ['AU-9']
+  tag nist: ['AU-9', 'AU-9 a']
   tag 'host'
   tag 'container'
 

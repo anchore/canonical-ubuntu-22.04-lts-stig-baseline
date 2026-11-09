@@ -17,12 +17,12 @@ Check the saved value of TCP syncookies by using the following command:
 If the "net.ipv4.tcp_syncookies" option is not set to "1", is commented out, or is missing, this is a finding.
 
 If conflicting results are returned, this is a finding.'
-  desc 'fix', %q(Configure Ubuntu 22.04 LTS to use TCP syncookies by using the following command:
-
-     $ sudo sysctl -w net.ipv4.tcp_syncookies = 1
-
-If "1" is not the system's default value, add or update the following line in "/etc/sysctl.conf":
-
+  desc 'fix', %q(Configure Ubuntu 22.04 LTS to use TCP syncookies by using the following command:  
+  
+     $ sudo sysctl -w net.ipv4.tcp_syncookies=1  
+  
+If "1" is not the system's default value, add or update the following line in "/etc/sysctl.conf":  
+  
      net.ipv4.tcp_syncookies = 1)
   impact 0.5
   tag check_id: 'C-64251r953377_chk'
@@ -32,10 +32,9 @@ If "1" is not the system's default value, add or update the following line in "/
   tag stig_id: 'UBTU-22-253010'
   tag gtitle: 'SRG-OS-000142-GPOS-00071'
   tag fix_id: 'F-64159r1069096_fix'
-  tag satisfies: ['SRG-OS-000480-GPOS-00227', 'SRG-OS-000420-GPOS-00186', 'SRG-OS-000142-GPOS-00071']
   tag 'documentable'
-  tag cci: ['CCI-000366', 'CCI-001095', 'CCI-002385']
-  tag nist: ['CM-6 b', 'SC-5 (2)', 'SC-5 a']
+  tag cci: ['CCI-001095']
+  tag nist: ['SC-5 (2)']
   tag 'host'
 
   only_if('Control not applicable within a container', impact: 0.0) {

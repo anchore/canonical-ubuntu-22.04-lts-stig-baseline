@@ -16,23 +16,25 @@ The structure and content of error messages must be carefully considered by the 
      /var/log/journal/3b018e681c904487b11671b9c1987cce/user-1000@bdedf14602ff4081a77dc7a6debc8626-000000000000083b-000604dae72c7e3b.journal root
 
 If any output returned is not owned by "root", this is a finding.'
-  desc 'fix', 'Configure Ubuntu 22.04 LTS to set the appropriate ownership to the files used by the systemd journal:
+  desc 'fix', 'Configure Ubuntu 22.04 LTS to set the appropriate ownership to the files used by the systemd journal.
+ 
+Create a drop-in file if it does not already exist with the following command:
 
-Add or modify the following lines in the "/usr/lib/tmpfiles.d/systemd.conf" file:
-
-Z /run/log/journal/%m ~2640 root systemd-journal - -
-z /var/log/journal/%m 2640 root systemd-journal - -
+$ sudo vi /etc/tmpfiles.d/zzz-systemd-stig.conf
+ 
+Add or modify the following lines in the "/etc/tmpfiles.d/zzz-systemd-stig.conf" file: 
+ 
 z /var/log/journal/%m/system.journal 0640 root systemd-journal - -
-
+ 
 Restart the system for the changes to take effect.'
   impact 0.5
   tag check_id: 'C-64232r953320_chk'
   tag severity: 'medium'
   tag gid: 'V-260503'
-  tag rid: 'SV-260503r958566_rule'
+  tag rid: 'SV-260503r1184056_rule'
   tag stig_id: 'UBTU-22-232090'
   tag gtitle: 'SRG-OS-000206-GPOS-00084'
-  tag fix_id: 'F-64140r953321_fix'
+  tag fix_id: 'F-64140r1184055_fix'
   tag 'documentable'
   tag cci: ['CCI-001314']
   tag nist: ['SI-11 b']

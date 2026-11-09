@@ -27,14 +27,15 @@ Enable and activate the log service by using the following command:
 
      $ sudo systemctl enable rsyslog.service --now'
   impact 0.5
+  tag check_id: 'C-64317r953575_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000269-GPOS-00103'
   tag gid: 'V-260588'
   tag rid: 'SV-260588r991562_rule'
   tag stig_id: 'UBTU-22-652010'
   tag fix_id: 'F-64225r953576_fix'
-  tag cci: ['CCI-000366', 'CCI-000154', 'CCI-001851', 'CCI-001665']
-  tag nist: ['CM-6 b', 'AU-6 (4)', 'AU-4 (1)', 'SC-24']
+  tag cci: ['CCI-001665']
+  tag nist: ['SC-24']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

@@ -20,9 +20,9 @@ Create or edit a file named /etc/dconf/db/local.d/00-screensaver with the follow
 [org/gnome/desktop/screensaver]
 lock-enabled=true'
   impact 0.5
+  tag check_id: 'C-64266r953422_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000028-GPOS-00009'
-  tag satisfies: ['SRG-OS-000028-GPOS-00009', 'SRG-OS-000030-GPOS-00011']
   tag gid: 'V-260537'
   tag rid: 'SV-260537r1069101_rule'
   tag stig_id: 'UBTU-22-271020'

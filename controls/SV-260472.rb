@@ -33,14 +33,15 @@ Reload settings from all system configuration files by using the following comma
 
      $ sudo sysctl --system'
   impact 0.3
+  tag check_id: 'C-64201r953227_chk'
   tag severity: 'low'
   tag gtitle: 'SRG-OS-000138-GPOS-00069'
   tag gid: 'V-260472'
-  tag rid: 'SV-260472r1137695_rule'
+  tag rid: 'SV-260472r1268233_rule'
   tag stig_id: 'UBTU-22-213010'
   tag fix_id: 'F-64109r953228_fix'
-  tag cci: ['CCI-001090', 'CCI-001082']
-  tag nist: ['SC-4', 'SC-2']
+  tag cci: ['CCI-001090']
+  tag nist: ['SC-4']
   tag 'host'
 
   only_if('Control not applicable within a container', impact: 0.0) {

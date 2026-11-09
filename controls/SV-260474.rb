@@ -26,14 +26,15 @@ Reload the system configuration files for the changes to take effect by using th
 
      $ sudo sysctl --system'
   impact 0.5
+  tag check_id: 'C-64203r953233_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000433-GPOS-00193'
   tag gid: 'V-260474'
   tag rid: 'SV-260474r958928_rule'
   tag stig_id: 'UBTU-22-213020'
   tag fix_id: 'F-64111r953234_fix'
-  tag cci: ['CCI-002824', 'CCI-000366']
-  tag nist: ['SI-16', 'CM-6 b']
+  tag cci: ['CCI-002824']
+  tag nist: ['SI-16']
   tag 'host'
 
   only_if('Control not applicable within a container', impact: 0.0) {

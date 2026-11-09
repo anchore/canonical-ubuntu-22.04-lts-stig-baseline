@@ -51,6 +51,7 @@ Restart the "auditd.service" for the changes to take effect:
   tag rid: 'SV-260592r1101709_rule'
   tag stig_id: 'UBTU-22-653020'
   tag gtitle: 'SRG-OS-000342-GPOS-00133'
+  tag satisfies: ['SRG-OS-000342-GPOS-00133', 'SRG-OS-000479-GPOS-00224']
   tag fix_id: 'F-64229r1101708_fix'
   tag 'documentable'
   tag cci: ['CCI-001851']

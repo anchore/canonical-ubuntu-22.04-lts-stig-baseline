@@ -23,7 +23,7 @@ If any system commands directories are returned that are not Set Group ID up on 
   tag fix_id: 'F-64131r953294_fix'
   tag 'documentable'
   tag cci: ['CCI-001495']
-  tag nist: ['AU-9']
+  tag nist: ['AU-9', 'AU-9 a']
   tag 'host'
   tag 'container'
 

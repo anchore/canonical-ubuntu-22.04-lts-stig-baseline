@@ -33,14 +33,15 @@ Restart the "auditd" service for the changes take effect:
 
      $ sudo systemctl restart auditd.service'
   impact 0.3
+  tag check_id: 'C-64322r953590_chk'
   tag severity: 'low'
   tag gtitle: 'SRG-OS-000046-GPOS-00022'
   tag gid: 'V-260593'
   tag rid: 'SV-260593r958424_rule'
   tag stig_id: 'UBTU-22-653025'
   tag fix_id: 'F-64230r953591_fix'
-  tag cci: ['CCI-000139', 'CCI-001855']
-  tag nist: ['AU-5 a', 'AU-5 (1)']
+  tag cci: ['CCI-000139']
+  tag nist: ['AU-5 a']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

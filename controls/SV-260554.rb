@@ -19,15 +19,15 @@ To set the timeout for the current sessions, execute the following command over 
 
      $ export TMOUT=900'
   impact 0.5
+  tag check_id: 'C-64283r953473_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000279-GPOS-00109'
-  tag satisfies: ['SRG-OS-000029-GPOS-00010', 'SRG-OS-000031-GPOS-00012']
   tag gid: 'V-260554'
   tag rid: 'SV-260554r958636_rule'
   tag stig_id: 'UBTU-22-412030'
   tag fix_id: 'F-64191r953474_fix'
-  tag cci: ['CCI-000057', 'CCI-000060', 'CCI-002361']
-  tag nist: ['AC-11 a', 'AC-11 (1)', 'AC-12']
+  tag cci: ['CCI-002361']
+  tag nist: ['AC-12']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

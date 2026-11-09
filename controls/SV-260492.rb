@@ -23,8 +23,10 @@ If any of the audit tools have a mode more permissive than "0755", this is a fin
 
 Replace "<audit_tool_name>" with the audit tool that does not have the correct permissions.'
   impact 0.5
+  tag check_id: 'C-64221r953287_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000256-GPOS-00097'
+  tag satisfies: ['SRG-OS-000256-GPOS-00097', 'SRG-OS-000257-GPOS-00098']
   tag gid: 'V-260492'
   tag rid: 'SV-260492r991557_rule'
   tag stig_id: 'UBTU-22-232035'

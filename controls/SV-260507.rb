@@ -23,9 +23,10 @@ If any of the audit tools are not owned by "root", this is a finding.'
 
 Replace "<audit_tool_name>" with each audit tool not owned by "root".'
   impact 0.5
+  tag check_id: 'C-64236r1101724_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000256-GPOS-00097'
-  tag satisfies: ['SRG-OS-000256-GPOS-00097', 'SRG-OS-000257-GPOS-00098', 'SRG-OS-000258-GPOS-00099']
+  tag satisfies: ['SRG-OS-000256-GPOS-00097', 'SRG-OS-000257-GPOS-00098']
   tag gid: 'V-260507'
   tag rid: 'SV-260507r1101725_rule'
   tag stig_id: 'UBTU-22-232110'

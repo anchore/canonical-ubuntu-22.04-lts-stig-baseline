@@ -11,6 +11,7 @@ If "use_mappers" does not contain "pwent", is commented out, or is missing, this
 
 If the system is missing an "/etc/pam_pkcs11/" directory and an "/etc/pam_pkcs11/pam_pkcs11.conf", find an example to copy into place and modify accordingly at "/usr/share/doc/libpam-pkcs11/examples/pam_pkcs11.conf.example.gz".'
   impact 0.7
+  tag check_id: 'C-64308r953548_chk'
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000068-GPOS-00036'
   tag gid: 'V-260579'

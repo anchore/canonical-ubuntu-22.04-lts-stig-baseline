@@ -18,10 +18,12 @@ If any temporary accounts have no expiration date set or do not expire within 72
 
      $ sudo chage -E $(date -d +3days +%Y-%m-%d) <temporary_account_name>'
   impact 0.5
+  tag check_id: 'C-64277r953455_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000002-GPOS-00002'
+  tag satisfies: ['SRG-OS-000002-GPOS-00002', 'SRG-OS-000123-GPOS-00064']
   tag gid: 'V-260548'
-  tag rid: 'SV-260548r958364_rule'
+  tag rid: 'SV-260548r1268212_rule'
   tag stig_id: 'UBTU-22-411040'
   tag fix_id: 'F-64185r953456_fix'
   tag cci: ['CCI-001682', 'CCI-000016']

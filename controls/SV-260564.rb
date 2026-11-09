@@ -13,6 +13,7 @@ Add or modify the following line in the "/etc/security/pwquality.conf" file:
 
 dictcheck = 1'
   impact 0.5
+  tag check_id: 'C-64293r953503_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000480-GPOS-00225'
   tag gid: 'V-260564'

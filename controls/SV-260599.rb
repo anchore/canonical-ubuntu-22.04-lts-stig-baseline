@@ -19,15 +19,16 @@ Reload the configuration file of the audit service to update the group ownership
 
      $ sudo systemctl kill auditd -s SIGHUP'
   impact 0.5
+  tag check_id: 'C-64328r953608_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000057-GPOS-00027'
-  tag satisfies: ['SRG-OS-000057-GPOS-00027', 'SRG-OS-000058-GPOS-00028', 'SRG-OS-000059-GPOS-00029', 'SRG-OS-000206-GPOS-00084']
+  tag satisfies: ['SRG-OS-000057-GPOS-00027', 'SRG-OS-000058-GPOS-00028', 'SRG-OS-000059-GPOS-00029']
   tag gid: 'V-260599'
   tag rid: 'SV-260599r958434_rule'
   tag stig_id: 'UBTU-22-653055'
   tag fix_id: 'F-64236r953609_fix'
-  tag cci: ['CCI-000162', 'CCI-000163', 'CCI-000164', 'CCI-001314']
-  tag nist: ['AU-9', 'AU-9 a', 'SI-11 b']
+  tag cci: ['CCI-000162', 'CCI-000163', 'CCI-000164']
+  tag nist: ['AU-9', 'AU-9 a']
   tag 'host'
 
   if virtualization.container_system?

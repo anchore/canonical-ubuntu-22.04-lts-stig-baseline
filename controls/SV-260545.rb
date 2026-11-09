@@ -13,6 +13,7 @@ Add or modify the following line in the "/etc/login.defs" file:
 
 PASS_MIN_DAYS    1'
   impact 0.5
+  tag check_id: 'C-64274r986278_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000075-GPOS-00043'
   tag gid: 'V-260545'

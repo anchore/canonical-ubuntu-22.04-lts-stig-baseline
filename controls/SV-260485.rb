@@ -23,7 +23,7 @@ If any directories are found to be group-writable or world-writable, this is a f
   tag fix_id: 'F-64122r953267_fix'
   tag 'documentable'
   tag cci: ['CCI-001495']
-  tag nist: ['AU-9']
+  tag nist: ['AU-9', 'AU-9 a']
   tag 'host'
   tag 'container'
 

@@ -14,14 +14,15 @@ If the "telnetd" package is installed, this is a finding.'
 
      $ sudo apt-get remove telnetd'
   impact 0.7
+  tag check_id: 'C-64212r953260_chk'
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000074-GPOS-00042'
   tag gid: 'V-260483'
   tag rid: 'SV-260483r987796_rule'
   tag stig_id: 'UBTU-22-215035'
   tag fix_id: 'F-64120r953261_fix'
-  tag cci: ['CCI-000381', 'CCI-000197']
-  tag nist: ['CM-7 a', 'IA-5 (1) (c)']
+  tag cci: ['CCI-000197']
+  tag nist: ['IA-5 (1) (c)']
   tag 'host'
   tag 'container'
 

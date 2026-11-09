@@ -30,10 +30,10 @@ Note: The "-k <keyname>" at the end of the line gives the rule a unique meaning 
   tag stig_id: 'UBTU-22-654210'
   tag gtitle: 'SRG-OS-000064-GPOS-00033'
   tag fix_id: 'F-64281r953744_fix'
-  tag satisfies: ['SRG-OS-000392-GPOS-00172', 'SRG-OS-000470-GPOS-00214', 'SRG-OS-000473-GPOS-00218', 'SRG-OS-000064-GPOS-00033']
+  tag satisfies: ['SRG-OS-000064-GPOS-00033', 'SRG-OS-000470-GPOS-00214', 'SRG-OS-000473-GPOS-00218']
   tag 'documentable'
-  tag cci: ['CCI-000172', 'CCI-002884']
-  tag nist: ['AU-12 c', 'MA-4 (1) (a)']
+  tag cci: ['CCI-000172']
+  tag nist: ['AU-12 c']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

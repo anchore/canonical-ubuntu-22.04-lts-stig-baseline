@@ -15,6 +15,7 @@ Add or modify the following line in the "/etc/security/pwquality.conf" file:
 
 minlen = 15'
   impact 0.5
+  tag check_id: 'C-64294r953506_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000078-GPOS-00046'
   tag gid: 'V-260565'

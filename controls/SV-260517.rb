@@ -45,6 +45,7 @@ Rate-limiting can also be done on an interface. An example of adding a rate limi
 
      $ sudo ufw limit in on ens160'
   impact 0.5
+  tag check_id: 'C-64246r953362_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000420-GPOS-00186'
   tag gid: 'V-260517'

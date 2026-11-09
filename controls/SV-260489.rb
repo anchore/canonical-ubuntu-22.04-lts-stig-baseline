@@ -20,14 +20,15 @@ Note: The btmp, wtmp, and lastlog files are excluded. Refer to the Discussion fo
 
      $ sudo find /var/log -perm /137 ! -name '*[bw]tmp' ! -name '*lastlog' -type f -exec chmod 640 '{}' \;)
   impact 0.5
+  tag check_id: 'C-64218r1134795_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000205-GPOS-00083'
   tag gid: 'V-260489'
   tag rid: 'SV-260489r1134796_rule'
   tag stig_id: 'UBTU-22-232026'
   tag fix_id: 'F-64126r953279_fix'
-  tag cci: ['CCI-001314', 'CCI-001312']
-  tag nist: ['SI-11 b', 'SI-11 a']
+  tag cci: ['CCI-001312']
+  tag nist: ['SI-11 a']
   tag 'host'
   tag 'container'
 

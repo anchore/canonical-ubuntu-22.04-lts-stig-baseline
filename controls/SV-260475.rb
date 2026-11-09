@@ -18,6 +18,7 @@ If no output is returned, this is a finding.'
 
 If the installed CPU is hardware capable of NX protection, check if the system's BIOS/UEFI setup configuration permits toggling the "NX bit" or "no execution bit", and set it to "enabled".)
   impact 0.5
+  tag check_id: 'C-64204r953236_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000433-GPOS-00192'
   tag gid: 'V-260475'

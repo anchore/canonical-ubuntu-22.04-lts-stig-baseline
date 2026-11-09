@@ -1,11 +1,11 @@
 control 'SV-260532' do
   title 'Ubuntu 22.04 LTS must configure the SSH daemon to use Message Authentication Codes (MACs) employing FIPS 140-3-approved cryptographic hashes to prevent the unauthorized disclosure of information and/or detect changes to information during transmission.'
-  desc 'Without cryptographic integrity protections, information can be altered by unauthorized users without detection.
-
-Remote access (e.g., RDP) is access to DOD nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless. Nonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the internet) or an internal network.
-
-Local maintenance and diagnostic activities are those activities carried out by individuals physically present at the information system or information system component and not communicating across a network connection.
-
+  desc 'Without cryptographic integrity protections, information can be altered by unauthorized users without detection.   
+  
+Remote access (e.g., RDP) is access to DoW nonpublic information systems by an authorized user (or an information system) communicating through an external, non-organization-controlled network. Remote access methods include, for example, dial-up, broadband, and wireless. Nonlocal maintenance and diagnostic activities are those activities conducted by individuals communicating through a network, either an external network (e.g., the internet) or an internal network.   
+  
+Local maintenance and diagnostic activities are those activities carried out by individuals physically present at the information system or information system component and not communicating across a network connection.   
+  
 Encrypting information for transmission protects information from unauthorized disclosure and modification. Cryptographic mechanisms implemented to protect information integrity include, for example, cryptographic hash functions, which have common application in digital signatures, checksums, and message authentication codes.'
   desc 'check', %q(Verify the SSH server is configured to only use MACs that employ FIPS 140-3 approved ciphers by using the following command:
 
@@ -23,11 +23,12 @@ Restart the SSH server for the changes to take effect:
 
      $ sudo systemctl reload sshd.service'
   impact 0.5
+  tag check_id: 'C-64261r953407_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000250-GPOS-00093'
-  tag satisfies: ['SRG-OS-000250-GPOS-00093', 'SRG-OS-000393-GPOS-00173', 'SRG-OS-000394-GPOS-00174', 'SRG-OS-000125-GPOS-00065', 'SRG-OS-000424-GPOS-00188']
+  tag satisfies: ['SRG-OS-000250-GPOS-00093', 'SRG-OS-000393-GPOS-00173', 'SRG-OS-000424-GPOS-00188']
   tag gid: 'V-260532'
-  tag rid: 'SV-260532r991554_rule'
+  tag rid: 'SV-260532r1268237_rule'
   tag stig_id: 'UBTU-22-255055'
   tag fix_id: 'F-64169r953408_fix'
   tag cci: ['CCI-001453', 'CCI-002421', 'CCI-002890']

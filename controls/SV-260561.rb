@@ -15,6 +15,7 @@ Add or modify the following line in the "/etc/security/pwquality.conf" file:
 
 lcredit = -1'
   impact 0.5
+  tag check_id: 'C-64290r953494_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000070-GPOS-00038'
   tag gid: 'V-260561'

@@ -25,6 +25,7 @@ Restart the "auditd" service for the changes to take effect:
 
 Note: If the "space_left_action" parameter is set to "exec", ensure the command being executed notifies the SA and ISSO.'
   impact 0.3
+  tag check_id: 'C-64325r953599_chk'
   tag severity: 'low'
   tag gtitle: 'SRG-OS-000343-GPOS-00134'
   tag gid: 'V-260596'

@@ -30,14 +30,15 @@ Add or modify the following lines in the "/etc/aide/aide.conf" file:
 /sbin/autrace p+i+n+u+g+s+b+acl+xattrs+sha512
 /sbin/augenrules p+i+n+u+g+s+b+acl+xattrs+sha512'
   impact 0.5
+  tag check_id: 'C-64315r1069106_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000278-GPOS-00108'
   tag gid: 'V-260586'
   tag rid: 'SV-260586r1069107_rule'
   tag stig_id: 'UBTU-22-651030'
   tag fix_id: 'F-64223r1044778_fix'
-  tag cci: ['CCI-001496', 'CCI-001493', 'CCI-001494', 'CCI-001495']
-  tag nist: ['AU-9 (3)', 'AU-9 a', 'AU-9']
+  tag cci: ['CCI-001496']
+  tag nist: ['AU-9 (3)']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

@@ -13,6 +13,7 @@ If the "/var/log" directory is not group-owned by "syslog", this is a finding.'
 
      $ sudo chgrp syslog /var/log'
   impact 0.5
+  tag check_id: 'C-64238r953338_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000206-GPOS-00084'
   tag gid: 'V-260509'

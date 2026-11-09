@@ -22,10 +22,10 @@ Note: Ubuntu Pro security certification instructions can be found at: https://ub
   tag stig_id: 'UBTU-22-671010'
   tag gtitle: 'SRG-OS-000396-GPOS-00176'
   tag fix_id: 'F-64287r953762_fix'
-  tag satisfies: ['SRG-OS-000396-GPOS-00176', 'SRG-OS-000393-GPOS-00173', 'SRG-OS-000394-GPOS-00174', 'SRG-OS-000478-GPOS-00223']
+  tag satisfies: ['SRG-OS-000396-GPOS-00176', 'SRG-OS-000478-GPOS-00223']
   tag 'documentable'
-  tag cci: ['CCI-002450', 'CCI-002890', 'CCI-003123']
-  tag nist: ['SC-13 b', 'MA-4 (6)']
+  tag cci: ['CCI-002450']
+  tag nist: ['SC-13 b']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

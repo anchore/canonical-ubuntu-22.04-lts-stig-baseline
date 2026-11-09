@@ -22,10 +22,10 @@ SILENTREPORTS=no'
   tag stig_id: 'UBTU-22-651020'
   tag gtitle: 'SRG-OS-000363-GPOS-00150'
   tag fix_id: 'F-64221r953564_fix'
-  tag satisfies: ['SRG-OS-000363-GPOS-00150', 'SRG-OS-000446-GPOS-00200', 'SRG-OS-000447-GPOS-00201']
+  tag satisfies: ['SRG-OS-000363-GPOS-00150', 'SRG-OS-000447-GPOS-00201']
   tag 'documentable'
-  tag cci: ['CCI-001744', 'CCI-002699', 'CCI-002702']
-  tag nist: ['CM-3 (5)', 'SI-6 b', 'SI-6 d']
+  tag cci: ['CCI-001744', 'CCI-002702']
+  tag nist: ['CM-3 (5)', 'SI-6 d']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {

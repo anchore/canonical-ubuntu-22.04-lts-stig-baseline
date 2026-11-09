@@ -14,9 +14,9 @@ If the "rsh-server" package is installed, this is a finding.'
 
      $ sudo apt-get remove rsh-server'
   impact 0.7
+  tag check_id: 'C-64211r953257_chk'
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000095-GPOS-00049'
-  tag satisfies: ['SRG-OS-000095-GPOS-00049', 'SRG-OS-000074-GPOS-00042']
   tag gid: 'V-260482'
   tag rid: 'SV-260482r958478_rule'
   tag stig_id: 'UBTU-22-215030'

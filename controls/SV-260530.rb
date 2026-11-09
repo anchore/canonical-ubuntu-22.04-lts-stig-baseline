@@ -8,21 +8,22 @@ control 'SV-260530' do
 
 If "X11UseLocalhost" is set to "no", is commented out, is missing, or conflicting results are returned, this is a finding.)
   desc 'fix', 'Configure the SSH server to prevent remote hosts from connecting to the proxy display.
+  
+Add or modify the following line in the "/etc/ssh/sshd_config" file: 
 
-Add or modify the following line in the "/etc/ssh/sshd_config" file:
+X11UseLocalhost yes 
+ 
+Restart SSH for the changes to take effect: 
 
-X11UseLocalhost yes
-
-Restart the SSH daemon for the changes to take effect:
-
-     $ sudo systemctl restart sshd.service'
+$ sudo systemctl restart ssh'
   impact 0.5
+  tag check_id: 'C-64259r953401_chk'
   tag severity: 'medium'
   tag gtitle: 'SRG-OS-000480-GPOS-00227'
   tag gid: 'V-260530'
-  tag rid: 'SV-260530r991589_rule'
+  tag rid: 'SV-260530r1268251_rule'
   tag stig_id: 'UBTU-22-255045'
-  tag fix_id: 'F-64167r953402_fix'
+  tag fix_id: 'F-64167r1208686_fix'
   tag cci: ['CCI-000366']
   tag nist: ['CM-6 b']
   tag 'host'

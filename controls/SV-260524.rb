@@ -29,15 +29,16 @@ If "ssh.service" is not enabled and active, this is a finding.'
 
      $ sudo systemctl enable ssh.service --now'
   impact 0.7
+  tag check_id: 'C-64253r953383_chk'
   tag severity: 'high'
   tag gtitle: 'SRG-OS-000423-GPOS-00187'
-  tag satisfies: ['SRG-OS-000423-GPOS-00187', 'SRG-OS-000424-GPOS-00188', 'SRG-OS-000425-GPOS-00189', 'SRG-OS-000426-GPOS-00190']
+  tag satisfies: ['SRG-OS-000423-GPOS-00187', 'SRG-OS-000425-GPOS-00189', 'SRG-OS-000426-GPOS-00190']
   tag gid: 'V-260524'
   tag rid: 'SV-260524r958908_rule'
   tag stig_id: 'UBTU-22-255015'
   tag fix_id: 'F-64161r953384_fix'
-  tag cci: ['CCI-002418', 'CCI-002420', 'CCI-002421', 'CCI-002422']
-  tag nist: ['SC-8', 'SC-8 (2)', 'SC-8 (1)']
+  tag cci: ['CCI-002418', 'CCI-002420', 'CCI-002422']
+  tag nist: ['SC-8', 'SC-8 (2)']
   tag 'host'
 
   only_if('This control is Not Applicable to containers', impact: 0.0) {
