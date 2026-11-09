@@ -17,13 +17,6 @@ ubuntu2204STIG_stigrule_260483_telnetd_State: absent
 # R-260514 UBTU-22-251010
 ubuntu2204STIG_stigrule_260514_Manage: True
 ubuntu2204STIG_stigrule_260514_ufw_State: present
-# R-260515 UBTU-22-251015
-# A duplicate of 260516
-# duplicate of 260516
-# R-260516 UBTU-22-251020
-ubuntu2204STIG_stigrule_260516_Manage: True
-ubuntu2204STIG_stigrule_260516_ufw_enable_Enabled: yes
-ubuntu2204STIG_stigrule_260516_ufw_start_State: started
 # R-260522 UBTU-22-253010
 ubuntu2204STIG_stigrule_260522_Manage: True
 ubuntu2204STIG_stigrule_260522_net_ipv4_tcp_syncookies_Value: 1
@@ -37,23 +30,22 @@ ubuntu2204STIG_stigrule_260524_sshd_active_Enabled: yes
 ubuntu2204STIG_stigrule_260524_sshd_start_State: started
 # R-260525 UBTU-22-255020
 ubuntu2204STIG_stigrule_260525_Manage: True
-ubuntu2204STIG_stigrule_260525_banner_Line: banner /etc/issue.net
+ubuntu2204STIG_stigrule_260525_Banner_Line: Banner /etc/issue.net
 ubuntu2204STIG_stigrule_260525__etc_issue_net_Dest: /etc/issue.net
-ubuntu2204STIG_stigrule_260525__etc_issue_net_Content: 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
+ubuntu2204STIG_stigrule_260525__etc_issue_net_Content: |
+  You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.
 
-By using this IS (which includes any device attached to this IS), you consent to the following conditions:
+  By using this IS (which includes any device attached to this IS), you consent to the following conditions:
 
--The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
+  -The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.
 
--At any time, the USG may inspect and seize data stored on this IS.
+  -At any time, the USG may inspect and seize data stored on this IS.
 
--Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
+  -Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.
 
--This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
+  -This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.
 
--Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
-
-'
+  -Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.
 # R-260526 UBTU-22-255025
 ubuntu2204STIG_stigrule_260526_Manage: True
 ubuntu2204STIG_stigrule_260526_PermitEmptyPasswords_Line: PermitEmptyPasswords no
@@ -81,13 +73,10 @@ ubuntu2204STIG_stigrule_260535_Manage: True
 ubuntu2204STIG_stigrule_260535__etc_gdm3_greeter_dconf_defaults_enable_Value: 'true'
 # R-260536 UBTU-22-271015
 ubuntu2204STIG_stigrule_260536_Manage: True
-ubuntu2204STIG_stigrule_260536__etc_gdm3_greeter_dconf_defaults_text_Value: 'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.'
+ubuntu2204STIG_stigrule_260536__etc_gdm3_greeter_dconf_defaults_text_Value: "'You are accessing a U.S. Government (USG) Information System (IS) that is provided for USG-authorized use only.\n\nBy using this IS (which includes any device attached to this IS), you consent to the following conditions:\n\n-The USG routinely intercepts and monitors communications on this IS for purposes including, but not limited to, penetration testing, COMSEC monitoring, network operations and defense, personnel misconduct (PM), law enforcement (LE), and counterintelligence (CI) investigations.\n\n-At any time, the USG may inspect and seize data stored on this IS.\n\n-Communications using, or data stored on, this IS are not private, are subject to routine monitoring, interception, and search, and may be disclosed or used for any USG-authorized purpose.\n\n-This IS includes security measures (e.g., authentication and access controls) to protect USG interests--not for your personal benefit or privacy.\n\n-Notwithstanding the above, using this IS does not constitute consent to PM, LE or CI investigative searching or monitoring of the content of privileged communications, or work product, related to personal representation or services by attorneys, psychotherapists, or clergy, and their assistants. Such communications and work product are private and confidential. See User Agreement for details.'"
 # R-260545 UBTU-22-411025
 ubuntu2204STIG_stigrule_260545_Manage: True
 ubuntu2204STIG_stigrule_260545__etc_login_defs_Line: 'PASS_MIN_DAYS 1'
-# R-260546 UBTU-22-411030
-ubuntu2204STIG_stigrule_260546_Manage: True
-ubuntu2204STIG_stigrule_260546__etc_login_defs_Line: 'PASS_MAX_DAYS 60'
 # R-260552 UBTU-22-412020
 ubuntu2204STIG_stigrule_260552_Manage: True
 ubuntu2204STIG_stigrule_260552__etc_security_limits_conf_Line: '* hard maxlogins 10'
@@ -97,7 +86,8 @@ ubuntu2204STIG_stigrule_260553_vlock_State: present
 # R-260554 UBTU-22-412030
 ubuntu2204STIG_stigrule_260554_Manage: True
 ubuntu2204STIG_stigrule_260554__etc_profile_d_99_terminal_tmout_sh_Dest: /etc/profile.d/99-terminal_tmout.sh
-ubuntu2204STIG_stigrule_260554__etc_profile_d_99_terminal_tmout_sh_Content: 'TMOUT=600'
+ubuntu2204STIG_stigrule_260554__etc_profile_d_99_terminal_tmout_sh_Content: |
+  TMOUT=600
 # R-260555 UBTU-22-412035
 ubuntu2204STIG_stigrule_260555_Manage: True
 ubuntu2204STIG_stigrule_260555__etc_login_defs_Line: 'UMASK 077'
@@ -313,3 +303,9 @@ ubuntu2204STIG_stigrule_260649__etc_audit_rules_d_stig_rules__var_log_sudo_log_L
 ubuntu2204STIG_stigrule_274862_Manage: True
 ubuntu2204STIG_stigrule_274862__etc_audit_rules_d_stig_rules__etc_cron_d__cronjobs_Line: '-w /etc/cron.d/ -p wa -k cronjobs'
 ubuntu2204STIG_stigrule_274862__etc_audit_rules_d_stig_rules__var_spool_cron__cronjobs_Line: '-w /var/spool/cron/ -p wa -k cronjobs'
+# R-288815 
+ubuntu2204STIG_stigrule_288815_Manage: True
+ubuntu2204STIG_stigrule_288815__etc_audit_rules_d_stig_rules__usr_sbin_useradd_Line: '-a always,exit -F path=/usr/sbin/useradd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-useradd'
+# R-288816 
+ubuntu2204STIG_stigrule_288816_Manage: True
+ubuntu2204STIG_stigrule_288816__etc_audit_rules_d_99_finalize_rules_e2_Line: '-e 2'

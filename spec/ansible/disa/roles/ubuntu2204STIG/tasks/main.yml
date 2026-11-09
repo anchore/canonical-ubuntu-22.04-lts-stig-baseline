@@ -90,34 +90,6 @@
     state: "{{ ubuntu2204STIG_stigrule_260514_ufw_State }}"
     update_cache: yes
   when: ubuntu2204STIG_stigrule_260514_Manage
-# R-260516 UBTU-22-251020
-- name: check if ufw.service is installed
-  shell: ! systemctl list-unit-files | grep "^ufw.service[ \t]\+"
-  changed_when: False
-  check_mode: no
-  register: result
-  failed_when: result.rc > 1
-- name: stigrule_260516_ufw_enable
-  service:
-    name: ufw.service
-    enabled: "{{ ubuntu2204STIG_stigrule_260516_ufw_enable_Enabled }}"
-  when:
-    - ubuntu2204STIG_stigrule_260516_Manage
-    - result.rc == 0
-# R-260516 UBTU-22-251020
-- name: check if ufw.service is installed
-  shell: ! systemctl list-unit-files | grep "^ufw.service[ \t]\+"
-  changed_when: False
-  check_mode: no
-  register: result
-  failed_when: result.rc > 1
-- name: stigrule_260516_ufw_start
-  service:
-    name: ufw.service
-    state: "{{ ubuntu2204STIG_stigrule_260516_ufw_start_State }}"
-  when:
-    - ubuntu2204STIG_stigrule_260516_Manage
-    - result.rc == 0
 # R-260522 UBTU-22-253010
 - name: stigrule_260522_net_ipv4_tcp_syncookies
   sysctl:
@@ -170,11 +142,11 @@
     - ubuntu2204STIG_stigrule_260524_Manage
     - result.rc == 0
 # R-260525 UBTU-22-255020
-- name: stigrule_260525_banner
+- name: stigrule_260525_Banner
   lineinfile:
     path: /etc/ssh/sshd_config
-    regexp: '(?i)^\s*banner\s+'
-    line: "{{ ubuntu2204STIG_stigrule_260525_banner_Line }}"
+    regexp: '(?i)^\s*Banner\s+'
+    line: "{{ ubuntu2204STIG_stigrule_260525_Banner_Line }}"
   notify: ssh_restart
   when:
     - ubuntu2204STIG_stigrule_260525_Manage
@@ -299,15 +271,6 @@
     create: yes
   when:
     - ubuntu2204STIG_stigrule_260545_Manage
-# R-260546 UBTU-22-411030
-- name: stigrule_260546__etc_login_defs
-  lineinfile:
-    path: /etc/login.defs
-    regexp: '^PASS_MAX_DAYS'
-    line: "{{ ubuntu2204STIG_stigrule_260546__etc_login_defs_Line }}"
-    create: yes
-  when:
-    - ubuntu2204STIG_stigrule_260546_Manage
 # R-260552 UBTU-22-412020
 - name: stigrule_260552__etc_security_limits_conf
   lineinfile:
@@ -986,3 +949,19 @@
     regexp: '^-w /var/spool/cron/ -p wa -k cronjobs$'
     line: "{{ ubuntu2204STIG_stigrule_274862__etc_audit_rules_d_stig_rules__var_spool_cron__cronjobs_Line }}"
   when: ubuntu2204STIG_stigrule_274862_Manage
+# R-288815 
+- name: stigrule_288815__etc_audit_rules_d_stig_rules__usr_sbin_useradd
+  lineinfile:
+    path: /etc/audit/rules.d/stig.rules
+    regexp: '^-a always,exit -F path=/usr/sbin/useradd -F perm=x -F auid>=1000 -F auid!=unset -k privileged-useradd$'
+    line: "{{ ubuntu2204STIG_stigrule_288815__etc_audit_rules_d_stig_rules__usr_sbin_useradd_Line }}"
+  notify: auditd_restart
+  when: ubuntu2204STIG_stigrule_288815_Manage
+# R-288816 
+- name: stigrule_288816__etc_audit_rules_d_99_finalize_rules_e2
+  lineinfile:
+    path: /etc/audit/rules.d/audit.rules
+    regexp: '^-e 2$'
+    line: "{{ ubuntu2204STIG_stigrule_288816__etc_audit_rules_d_99_finalize_rules_e2_Line }}"
+  notify: auditd_restart
+  when: ubuntu2204STIG_stigrule_288816_Manage
