@@ -33,9 +33,22 @@ If the above command returns the status as "inactive" or any type of error, this
 
   expected_firewall_package = input('expected_firewall_package')
 
-  describe service(expected_firewall_package) do
+  describe package(expected_firewall_package) do
     it { should be_installed }
-    it { should be_enabled }
-    it { should be_running }
+  end
+
+  if expected_firewall_package == 'ufw'
+    # Ask ufw itself, as DISA's check does: ufw.service stays "active" when ufw is
+    # disabled (ufw-init exits 0 when ENABLED=no). An error prints no status line.
+    ufw_status = command('ufw status').stdout.lines.first.to_s.strip
+    describe 'ufw status' do
+      subject { ufw_status }
+      it { should cmp 'Status: active' }
+    end
+  else
+    describe service(expected_firewall_package) do
+      it { should be_enabled }
+      it { should be_running }
+    end
   end
 end
