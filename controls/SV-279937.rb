@@ -35,10 +35,7 @@ $ sudo systemctl list-units --type=service | grep nfs'
   tag cci: ['CCI-000381']
   tag nist: ['CM-7 a']
   tag 'host'
-
-  only_if('This control is Not Applicable to containers', impact: 0.0) {
-    !virtualization.container_system?
-  }
+  tag 'container'
 
   if input('nfs_authorized')
     impact 0.0
