@@ -501,18 +501,6 @@ inputs:
     type: Numeric
     value: 1
 
-  # SV-260468
-  - name: linux_threat_prevention_package
-    description: Endpoint Security Linux Threat Prevention Tool Package
-    type: String
-    value: mcafeetp
-
-  # SV-260468
-  - name: linux_threat_prevention_service
-    description: Endpoint Security Linux Threat Prevention Tool Service
-    type: String
-    value: mfetpd
-
   - name: remove_xorg_x11_server_packages
     description: Graphical Display Manager must not be installed
     type: Array
@@ -687,12 +675,6 @@ inputs:
       nodev: false
       nosuid: false
       noexec: false
-
-  # SV-260468
-  - name: skip_endpoint_security_tool
-    description: rhel_08_010001 - The RHEL 8 operating system must implement the Endpoint Security for Linux Threat Prevention tool.
-    type: Boolean
-    value: false
 
   - name: non_default_tally_dir
     description: The directory used by pam_faillock
