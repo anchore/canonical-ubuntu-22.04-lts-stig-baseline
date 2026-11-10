@@ -36,8 +36,26 @@ If the system is missing an "/etc/pam_pkcs11/" directory and an "/etc/pam_pkcs11
     config_file_exists = file(config_file).exist?
 
     if config_file_exists
-      describe parse_config_file(config_file) do
-        its('use_mappers') { should cmp 'pwent' }
+      # use_mappers is a comma-separated list ("use_mappers = pwent, null;"). It must
+      # contain pwent and, when the null mapper is listed, pwent must come before it.
+      settings = file(config_file).content.to_s.lines.map(&:strip).grep(/\Ause_mappers\s*=/)
+      mapper_lists = settings.map { |l| l.sub(/\Ause_mappers\s*=\s*/, '').sub(/;.*\z/, '').split(',').map(&:strip) }
+
+      describe 'use_mappers in pam_pkcs11.conf' do
+        subject { mapper_lists }
+        it { should_not be_empty }
+      end
+
+      mapper_lists.each do |mappers|
+        describe "use_mappers = #{mappers.join(', ')}" do
+          subject { mappers }
+          it { should include 'pwent' }
+          if mappers.include?('null')
+            it 'lists pwent before null' do
+              expect(mappers.index('pwent').to_i).to be < mappers.index('null')
+            end
+          end
+        end
       end
     else
       describe("#{config_file} exists") do
