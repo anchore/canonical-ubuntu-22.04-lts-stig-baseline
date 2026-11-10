@@ -29,8 +29,9 @@ $ sudo usermod -s /usr/sbin/nologin <user>'
   tag 'container'
 
   # Same selection as DISA's awk: 0 < UID < 1000, not halt/sync/shutdown,
-  # and a shell that does not end in nologin or false
-  exempt = %w[halt sync shutdown]
+  # and a shell that does not end in nologin or false. Accounts the ISSO has
+  # documented go in the interactive_system_account_exemptions input.
+  exempt = %w[halt sync shutdown] + input('interactive_system_account_exemptions')
   offenders = passwd.where { uid.to_i.positive? && uid.to_i < 1000 && !exempt.include?(user) && shell !~ /(nologin|false)\z/ }
 
   describe 'System accounts (UID 1-999) with an interactive login shell' do
