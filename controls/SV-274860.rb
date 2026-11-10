@@ -33,9 +33,14 @@ $ sudo find /etc/sudoers /etc/sudoers.d -type f -exec sed -i '/NOPASSWD/ s/^/# /
     !virtualization.container_system?
   }
 
-  failing_results = sudoers(input('sudoers_config_files').join(' ')).rules.where { tags.nil? && (tags || '').include?('NOPASSWD') }
+  passwordless_admins = input('passwordless_admins')
 
-  failing_results = failing_results.where { !input('passwordless_admins').include?(users) } if input('passwordless_admins').nil?
+  failing_results = sudoers(input('sudoers_config_files').join(' ')).rules.where { !tags.nil? && tags.include?('NOPASSWD') }
+
+  # Documented admin groups may keep NOPASSWD; accept them with or without the sudoers '%' prefix.
+  # A rule naming several users fails if any of them is not documented.
+  documented = ->(u) { passwordless_admins.include?(u) || passwordless_admins.include?(u.delete_prefix('%')) }
+  failing_results = failing_results.where { !Array(users).all?(&documented) } unless passwordless_admins.empty?
 
   describe 'Sudoers' do
     it 'should not include any (non-exempt) users with NOPASSWD set' do
