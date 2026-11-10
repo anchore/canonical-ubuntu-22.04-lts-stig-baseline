@@ -45,7 +45,7 @@ Copy it to the cron.daily directory:
   tag 'host'
   tag 'container'
 
-  only_if('This control is Not Applicable to containers') do
+  only_if('This control is Not Applicable to containers', impact: 0.0) do
     !virtualization.container_system?
   end
 
