@@ -26,9 +26,10 @@ ALL     ALL=(ALL:ALL) ALL'
   tag cci: ['CCI-002038', 'CCI-004895']
   tag nist: ['IA-11', 'SC-11 b']
   tag 'host'
+  tag 'container'
 
-  only_if('This control is Not Applicable to containers', impact: 0.0) {
-    !virtualization.container_system?
+  only_if('This control is Not Applicable as sudo is not installed', impact: 0.0) {
+    package('sudo').installed?
   }
 
   sudo = sudoers(input('sudoers_config_files'))
